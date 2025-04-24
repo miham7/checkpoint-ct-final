@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz cu 3 întrebări</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .quiz-container {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .question, .intro, .success-message {
+      display: none;
+      margin-bottom: 20px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    h1, h2 {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .success-message {
+      font-size: 1.5em;
+      color: green;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="intro" class="intro active">
+      <h1>Welcome to the final check point!</h1>
+      <p> Last questions for today :D <br>
+        It was an interesting journey but lets find out some more informations</p>
+      <button onclick="startQuiz()">Start</button>
+    </div>
+    <div id="q1" class="question">
+      <h2>1. What does the Quality Label plaque represent?</h2>
+      <button onclick="checkAnswer(1, 'a')">a) The Quality Label is an accreditation awarded by the European Union 
+        organizations that are involved in volunteering or solidarity projects and respect the values and standards 
+        of the European Solidarity Corps</button>
+      <button onclick="checkAnswer(1, 'b')">b) The Quality Label Plaque is an award given annually to the most active 
+        volunteering organization in each country</button>
+      <button onclick="checkAnswer(1, 'c')">c) The Quality Label is a certificate that allows young people to travel 
+        free of charge in the European Union</button>
+    </div>
+
+    <div id="q2" class="question">
+      <h2>2. Unde este cel mai apropiat punct de informare Eurodesk?</h2>
+      <button onclick="checkAnswer(2, 'a')">a) Cluj Napoca</button>
+      <button onclick="checkAnswer(2, 'b')">b) Timișoara</button>
+      <button onclick="checkAnswer(2, 'c')">c) București</button>
+    </div>
+
+    <div id="q3" class="question">
+      <h2>3. How to apply for a volunteering project through the European Solidarity Corps?</h2>
+      <button onclick="checkAnswer(3, 'a')">a) Going direct to the host country's embassy</button>
+      <button onclick="checkAnswer(3, 'b')">b) By creating a profile on the European Solidarity Corps platform and applying for available projects</button>
+      <button onclick="checkAnswer(3, 'c')">c) Only if you are already employed in an organisation</button>
+    </div>
+
+    <div id="success" class="success-message">
+      <h1>🎉 Congratulations! You almost finished the treasure hunt! </h1><br>
+    <p>Since I mentioned the Qulaity Label, find the plate and send a selfie with it! :P</p><br>
+      <h5>By the way, the first to send it, wins, so... good luck! </h5>
+    </div>
+  </div>
+
+  <script>
+    function startQuiz() {
+      document.getElementById('intro').classList.remove('active');
+      document.getElementById('q1').classList.add('active');
+    }
+
+    function checkAnswer(q, answer) {
+      const correct = {1: 'a', 2: 'b', 3: 'b'};
+      if (answer === correct[q]) {
+        document.getElementById('q' + q).classList.remove('active');
+        if (q < 3) {
+          document.getElementById('q' + (q + 1)).classList.add('active');
+        } else {
+          document.getElementById('success').classList.add('active');
+        }
+      } else {
+        alert("Wrong answer! Try again.");
+      }
+    }
+  </script>
+</body>
+</html>
